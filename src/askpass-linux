@@ -1,0 +1,3 @@
+#!/bin/sh
+# sudo reads this process's stdout through its private askpass pipe.
+exec /usr/bin/zenity --password --title="Pi sudo · Authenticate the command approved in Rex" --timeout=90 2>/dev/null

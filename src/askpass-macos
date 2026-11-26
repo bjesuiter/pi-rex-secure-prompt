@@ -1,0 +1,9 @@
+#!/bin/sh
+# sudo reads this process's stdout through its private askpass pipe.
+exec /usr/bin/osascript -s h 2>/dev/null <<'APPLESCRIPT'
+with timeout of 90 seconds
+  set answer to text returned of (display dialog "Enter your sudo password for the command approved in Rex." default answer "" with hidden answer buttons {"Cancel", "Authenticate"} default button "Authenticate" cancel button "Cancel" with title "Pi sudo")
+end timeout
+if answer is "" or answer contains linefeed or answer contains return or answer contains (character id 0) then error number -128
+return answer
+APPLESCRIPT

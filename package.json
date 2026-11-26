@@ -1,0 +1,15 @@
+{
+  "name": "pi-rex-secure-prompt",
+  "version": "0.1.0",
+  "description": "Rex approval and masked sudo authentication for Pi on macOS and Linux",
+  "private": true,
+  "keywords": ["pi-package"],
+  "repository": "github:bjesuiter/pi-rex-secure-prompt",
+  "pi": {
+    "extensions": ["./src/index.ts"]
+  },
+  "peerDependencies": {
+    "@earendil-works/pi-coding-agent": "*",
+    "typebox": "*"
+  }
+}
