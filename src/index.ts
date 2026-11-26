@@ -42,7 +42,7 @@ export default function (pi: ExtensionAPI) {
 
       pending = true;
       try {
-        let approval: string;
+        let approved: boolean;
         try {
           const { stdout } = await run("rex", [
             "--autostart=false", "--timeout", "100s", "do",
@@ -50,12 +50,12 @@ export default function (pi: ExtensionAPI) {
             "--action", "pi_sudo_approval", approvalScript,
             "--args", JSON.stringify({ request }),
           ], { signal, timeout: 105_000, maxBuffer: 16_384 });
-          approval = stdout.trim();
+          approved = JSON.parse(stdout)?.approved === true;
         } catch {
           return result("Rex approval could not be completed.");
         }
 
-        if (approval !== "true" || signal?.aborted) {
+        if (!approved || signal?.aborted) {
           return result("Sudo request cancelled or declined.");
         }
 

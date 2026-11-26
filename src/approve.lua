@@ -9,6 +9,6 @@ rex.action{
       confirm = "Confirm",
       timeout = 90,
     }
-    return answer == "approve"
+    return { approved = answer == "approve" }
   end,
 }
